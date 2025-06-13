@@ -1,70 +1,104 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 📁 FileTracking – File Validity Tracking System
 
-## Available Scripts
+**FileTracking** is a full-stack file tracking system built with .NET 8 (Web API) and React.  
+Users can upload files, get alerts based on expiry dates, and be managed by an admin.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🔐 Authentication & Role Management
+- Identity-based user authentication
+- Admin and User roles
+- JWT-based authorization
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 📤 File Upload and Management
+- Upload files (.pdf, .docx, .jpg, etc.)
+- Set expiration dates
+- List files nearing expiration
 
-### `npm test`
+### ⚠️ Alert System
+- Separate listing of soon-to-expire files
+- Actions:
+  - ✅ Extend validity
+  - 🕓 Snooze for 5 days
+  - 🔕 Suppress alert
+  - ❌ Delete file
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🛠 Admin Panel
+- View and delete all user files
+- Assign roles to users
+- Delete users
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🧱 Project Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+📦 FileTracking
+├── FileTracking.API              # .NET Web API
+│   ├── Controllers               # Auth and File controllers
+│   └── Program.cs / Startup     # Service configurations
+├── FileTracking.Application      # CQRS + MediatR logic
+│   └── Commands / Queries
+├── FileTracking.Infrastructure  # Identity + EF + Services
+├── FileTracking.Domain           # Entities and interfaces
+├── filetracking-frontend         # React frontend
+│   ├── LoginPage.js
+│   ├── UploadFile.js
+│   ├── ExpiringFilesPage.js
+│   ├── AdminPanelPage.js
+│   └── UserPanelPage.js
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## ⚙️ Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 🔧 Backend (.NET 8 API)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+cd FileTracking.API
+dotnet run
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Swagger: `https://localhost:7187/swagger`
+- API: `https://localhost:7187` or `http://localhost:5268`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 💻 Frontend (React)
 
-## Learn More
+```bash
+cd filetracking-frontend
+npm install
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- React App: `http://localhost:3000`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🔑 Default Admin Login
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+Email: admin@mail.com
+Password: Admin123!
+```
 
-### Analyzing the Bundle Size
+- After login, use `assign-role` to grant Admin privileges to other users.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## ✅ Technologies Used
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+| Technology       | Description                    |
+|------------------|--------------------------------|
+| ASP.NET Core 8   | Web API backend                |
+| MediatR          | CQRS pattern implementation    |
+| Identity         | User and role management       |
+| EntityFramework  | In-Memory DB (or SQL support)  |
+| React            | Frontend UI                    |
+| JWT              | Token-based authorization      |
+| MailKit          | (Optional) Email notifications |
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
